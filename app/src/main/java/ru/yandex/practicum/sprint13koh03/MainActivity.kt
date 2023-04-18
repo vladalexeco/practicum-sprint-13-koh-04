@@ -119,6 +119,7 @@ class MainActivity : AppCompatActivity() {
                     } else {
                         it
                     }
+
                 }
                 catalogItemsAdapter.setItems(catalogItems)
             }
@@ -177,9 +178,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onBottomNavigationItemSelected(itemId: Int): Boolean {
+
         return when (itemId) {
             R.id.catalog -> {
                 changeCurrentScreenMode(ScreenMode.CATALOG)
+
                 true
             }
             R.id.cart -> {
@@ -196,10 +199,12 @@ class MainActivity : AppCompatActivity() {
                 ScreenMode.CATALOG -> {
                     binding.catalogContainer.visibility = View.VISIBLE
                     binding.cartContainer.visibility = View.GONE
+                    binding.toolbar.setTitle(R.string.catalog_title)
                 }
                 ScreenMode.CART -> {
                     binding.catalogContainer.visibility = View.GONE
                     binding.cartContainer.visibility = View.VISIBLE
+                    binding.toolbar.setTitle(R.string.cart_title)
                 }
             }
             currentScreenMode = newScreenMode
