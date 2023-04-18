@@ -87,6 +87,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         catalogItemsAdapter.setItems(catalogItems)
+
         with(catalogItemsAdapter) {
             onAddToCartClickListener = OnAddToCartClickListener { item ->
                 catalogItems = catalogItems.map {
@@ -97,9 +98,11 @@ class MainActivity : AppCompatActivity() {
                                     id = UUID.randomUUID().toString(),
                                     catalogItem = it.item,
                                     count = 1
+
                                 )
                             )
                         }
+                        clearTitle()
                         cartItemsAdapter.setItems(cartItems)
                         it.copy(count = 1)
                     } else {
@@ -107,6 +110,7 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
                 catalogItemsAdapter.setItems(catalogItems)
+
             }
             onAddCountClickListener = OnAddCountClickListener { item ->
                 catalogItems = catalogItems.map {
@@ -115,6 +119,7 @@ class MainActivity : AppCompatActivity() {
                     } else {
                         it
                     }
+
                 }
                 catalogItemsAdapter.setItems(catalogItems)
             }
@@ -130,6 +135,15 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    fun clearTitle() {
+        if(cartItems.isNotEmpty()) {
+            binding.cartEmptyTitle.visibility = View.GONE
+        } else {
+            binding.cartEmptyTitle.visibility = View.VISIBLE
+        }
+    }
+
 
     private fun setUpCart() {
         binding.cartItemsList.apply {
@@ -164,9 +178,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onBottomNavigationItemSelected(itemId: Int): Boolean {
+
         return when (itemId) {
             R.id.catalog -> {
                 changeCurrentScreenMode(ScreenMode.CATALOG)
+
                 true
             }
             R.id.cart -> {
@@ -183,10 +199,12 @@ class MainActivity : AppCompatActivity() {
                 ScreenMode.CATALOG -> {
                     binding.catalogContainer.visibility = View.VISIBLE
                     binding.cartContainer.visibility = View.GONE
+                    binding.toolbar.setTitle(R.string.catalog_title)
                 }
                 ScreenMode.CART -> {
                     binding.catalogContainer.visibility = View.GONE
                     binding.cartContainer.visibility = View.VISIBLE
+                    binding.toolbar.setTitle(R.string.cart_title)
                 }
             }
             currentScreenMode = newScreenMode

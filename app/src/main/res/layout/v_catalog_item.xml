@@ -19,7 +19,8 @@
             <ImageView
                 android:id="@+id/image"
                 android:layout_width="match_parent"
-                android:layout_height="96dp" />
+                android:layout_height="96dp"
+                android:scaleType="centerCrop"/>
 
             <TextView
                 android:id="@+id/title"
@@ -33,7 +34,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_marginHorizontal="8dp"
-                android:background="#666"
+                android:padding="2dp"
+                android:background="@drawable/bg_price"
                 android:textColor="@color/white" />
 
             <com.google.android.material.button.MaterialButton
