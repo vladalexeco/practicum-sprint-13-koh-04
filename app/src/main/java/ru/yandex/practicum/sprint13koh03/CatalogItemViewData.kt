@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import ru.yandex.practicum.sprint13koh03.databinding.VCatalogItemBinding
+import java.text.DecimalFormat
 
 data class CatalogItemViewData(
     val item: CatalogItem,
@@ -33,7 +34,8 @@ class CatalogItemViewHolder(
             .load(viewData.item.imageUrl)
             .into(binding.image)
         binding.title.text = viewData.item.name
-        binding.price.text = "${viewData.item.price / 100}/${viewData.item.unit}"
+        val decimalFormat = DecimalFormat("0.00")
+        binding.price.text = "${decimalFormat.format(viewData.item.price.toDouble() / 100)}/${viewData.item.unit}"
 
         if (viewData.count != null) {
             binding.addToCart.visibility = View.GONE
