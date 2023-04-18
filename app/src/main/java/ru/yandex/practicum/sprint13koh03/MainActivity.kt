@@ -87,6 +87,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         catalogItemsAdapter.setItems(catalogItems)
+
         with(catalogItemsAdapter) {
             onAddToCartClickListener = OnAddToCartClickListener { item ->
                 catalogItems = catalogItems.map {
@@ -97,9 +98,11 @@ class MainActivity : AppCompatActivity() {
                                     id = UUID.randomUUID().toString(),
                                     catalogItem = it.item,
                                     count = 1
+
                                 )
                             )
                         }
+                        clearTitle()
                         cartItemsAdapter.setItems(cartItems)
                         it.copy(count = 1)
                     } else {
@@ -107,6 +110,7 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
                 catalogItemsAdapter.setItems(catalogItems)
+
             }
             onAddCountClickListener = OnAddCountClickListener { item ->
                 catalogItems = catalogItems.map {
@@ -130,6 +134,15 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    fun clearTitle() {
+        if(cartItems.isNotEmpty()) {
+            binding.cartEmptyTitle.visibility = View.GONE
+        } else {
+            binding.cartEmptyTitle.visibility = View.VISIBLE
+        }
+    }
+
 
     private fun setUpCart() {
         binding.cartItemsList.apply {
