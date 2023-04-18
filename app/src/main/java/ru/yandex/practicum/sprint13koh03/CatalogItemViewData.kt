@@ -35,7 +35,7 @@ class CatalogItemViewHolder(
             .into(binding.image)
         binding.title.text = viewData.item.name
         val decimalFormat = DecimalFormat("0.00")
-        binding.price.text = "${decimalFormat.format(viewData.item.price.toDouble() / 100)}/${viewData.item.unit}"
+        binding.price.text = "${decimalFormat.format(viewData.item.price.toDouble() / 100)} Р/${viewData.item.unit}"
 
         if (viewData.count != null) {
             binding.addToCart.visibility = View.GONE
